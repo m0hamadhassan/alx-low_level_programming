@@ -1,5 +1,6 @@
-#inlude<stdio.h>
+#include<stdio.h>
 void main(void)
 {
-puts("Programming is like building a multilingual puzzle\n");
+char str[]="Programming is like building a multilingual puzzle\n";
+puts(str);
 }
