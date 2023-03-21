@@ -1,6 +1,18 @@
-#include<stdio.h>
-void main(void)
+#include<main.h>
+/*
+ * main - Entry point
+ *
+ * Description: prints _putchar using putchar prototype
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
 {
-	printf("_putchar");
-	return(0);
+	char str[]="_putchar";
+	int i;
+	for(i=0;i<8;i++)
+	{
+		printf("_putchar");
+	}
+		return(0);
 }
