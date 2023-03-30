@@ -1,3 +1,4 @@
+#include<main.h>
 /*
  * _isupper - check if letter is upper case or not
  * Description: check if character is upper case or not
