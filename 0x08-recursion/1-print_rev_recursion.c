@@ -1,6 +1,6 @@
 #include"main.h"
 /**
- * _print_rev_recursion - print string reversed using recursion 
+ * _print_rev_recursion - print string reversed using recursion
  *
  * Description: function that prints a string, reversed followed by a new line
  *
