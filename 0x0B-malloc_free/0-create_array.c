@@ -16,9 +16,14 @@ char *create_array(unsigned int size, char c)
 	unsigned int i;
 	char *arrPointer = (char *)malloc(size * sizeof(char));
 
-	for (i = 0; i < size; i++)
+	if (size == 0)
+	return (NULL);
+	else
 	{
-		arrPointer[i] = c;
+		for (i = 0; i < size; i++)
+		{
+			arrPointer[i] = c;
+		}
+		return (arrPointer);
 	}
-	return (arrPointer);
 }
