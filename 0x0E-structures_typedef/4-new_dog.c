@@ -8,10 +8,11 @@
  * Description: function that creates a new dog.
  * Return: pointer to struct dog_t
  */
+
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *dog;
-	int i;
+	int i, nameCount = 0, ownerCount = 0;
 
 	dog = malloc(sizeof(dog_t));
 	if (dog == NULL)
@@ -21,20 +22,34 @@ dog_t *new_dog(char *name, float age, char *owner)
 	}
 	else
 	{
-		i = 0;
+
 		while (name[i] != '\0')
 		{
-			dog->name[i] = name[i];
-			i++;
-		}
-		dog->age = age;
-		i = 0;
-		while (name[i] != '\0')
-		{
-			dog->owner[i] = owner[i];
-			i++;
+			nameCount++;
 		}
 
+		while (owner[i] != '\0')
+		{
+			ownerCount++;
+		}
+		dog->name = malloc((nameCount + 1) * sizeof(char));
+		dog->owner = malloc((ownerCount + 1) * sizeof(char));
+		if (dog->name != NULL && dog->owner != NULL)
+		{
+			i = 0;
+			while (name[i] != '\0')
+			{
+				dog->name[i] = name[i];
+			}
+			dog->name[nameCount] = '\0';
+			i = 0;
+			while (owner[i] != '\0')
+			{
+				dog->owner[i] = owner[i];
+			}
+			dog->owner[ownerCount] = '\0';
+		}
+		dog->age = age;
 		return (dog);
 	}
 }
