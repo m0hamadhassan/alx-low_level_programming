@@ -1,64 +1,84 @@
-#include "dog.h"
 #include <stdlib.h>
+#include "dog.h"
+
 /**
- * new_dog - new dog function
- * @name: dog name type string
- * @age: dog age type float
- * @owner: dog owner type string
- * Description: function that creates a new dog.
- * Return: pointer to struct dog_t
- */
+ * _strlen - a function that gets a length of string
+ *
+ * @str: the string to get the length
+ *
+ * Return: length of @str
+*/
+
+int _strlen(const char *str)
+{
+	int length = 0;
+
+	while (*str++)
+		length++;
+	return (length);
+}
+
+/**
+ * _strcopy - a function that returns @dest with a copy of a string from @src
+ *
+ * @src: string to copy
+ * @dest: copy string to here
+ *
+ * Return: @dest
+*/
+
+char *_strcopy(char *dest, char *src)
+{
+	int i;
+
+	for (i = 0; src[i]; i++)
+		dest[i] = src[i];
+	dest[i] = '\0';
+
+	return (dest);
+}
+
+/**
+ * new_dog - a function that creates a new dog
+ *
+ * @name: name of dog
+ * @age: age of dog
+ * @owner: dog owner
+ *
+ * Return: struct pointer dog
+ *         NULL if function fails
+*/
 
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *dog;
-	int i, nameCount = 0, ownerCount = 0;
 
-	dog = malloc(sizeof(dog_t));
+	/* if name and owner are empty and age is less than zero return null*/
+	if (!name || age < 0 || !owner)
+		return (NULL);
+
+	dog = (dog_t *) malloc(sizeof(dog_t));
 	if (dog == NULL)
+		return (NULL);
+
+	dog->name = malloc(sizeof(char) * (_strlen(name) + 1));
+	if ((*dog).name == NULL)
 	{
 		free(dog);
 		return (NULL);
 	}
-	else
+
+	dog->owner = malloc(sizeof(char) * (_strlen(owner) + 1));
+	if ((*dog).owner == NULL)
 	{
-
-		while (name[i] != '\0')
-		{
-			nameCount++;
-		}
-
-		while (owner[i] != '\0')
-		{
-			ownerCount++;
-		}
-		dog->name = malloc((nameCount + 1) * sizeof(char));
-		dog->owner = malloc((ownerCount + 1) * sizeof(char));
-		if (dog->name != NULL && dog->owner != NULL)
-		{
-			i = 0;
-			while (name[i] != '\0')
-			{
-				dog->name[i] = name[i];
-				i++;
-			}
-			dog->name[nameCount] = '\0';
-			i = 0;
-			while (owner[i] != '\0')
-			{
-				dog->owner[i] = owner[i];
-				i++;
-			}
-			dog->owner[ownerCount] = '\0';
-			dog->age = age;
-			return (dog);
-		}
-		else
-		{
-			free(dog->name);
-			free(dog->owner);
-			free(dog);
-			return (NULL);
-		}
+		free(dog->name);
+		free(dog);
+		return (NULL);
 	}
+
+	dog->name = _strcopy(dog->name, name);
+	dog->age = age;
+	dog->owner = _strcopy(dog->owner, owner);
+
+	return (dog);
 }
