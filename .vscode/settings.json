@@ -1,5 +1,7 @@
 {
 	"files.associations": {
-		"function_pointers.h": "c"
+		"function_pointers.h": "c",
+		"stddef.h": "c",
+		"variadic_functions.h": "c"
 	}
 }
